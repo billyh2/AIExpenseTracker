@@ -1,3 +1,5 @@
+# Ignore Firebase configuration
+GoogleService-Info.plist
 # Logs
 logs
 *.log
