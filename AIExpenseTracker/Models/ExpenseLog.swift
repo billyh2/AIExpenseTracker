@@ -1,0 +1,32 @@
+//
+//  ExpenseLog.swift
+//  AIExpenseTracker
+//
+//  Created by Billy Huang on 2025/3/18.
+//
+
+import Foundation
+
+struct ExpenseLog: Codable, Identifiable, Equatable {
+    
+    let id: String
+    var name: String
+    var category: String
+    var amount: Double
+    var currency: String
+    var date: Date
+    
+    var categoryEnum: Category {
+        Category(rawValue: category) ?? .utilities
+    }
+    
+    init(id: String, name: String, category: String, amount: Double, currency: String = "USD", date: Date) {
+        self.id = id
+        self.name = name
+        self.category = category
+        self.amount = amount
+        self.currency = currency
+        self.date = date
+    }
+    
+}
