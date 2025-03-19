@@ -30,3 +30,16 @@ struct ExpenseLog: Codable, Identifiable, Equatable {
     }
     
 }
+
+extension ExpenseLog {
+    
+    var dateText: String {
+        Utils.dateFormatter.string(from: date)
+    }
+    
+    var amountText: String {
+        Utils.numberFormatter.currencySymbol = currency
+        return Utils.numberFormatter.string(from: NSNumber(value: amount))
+            ?? "\(amount)"
+    }
+}
