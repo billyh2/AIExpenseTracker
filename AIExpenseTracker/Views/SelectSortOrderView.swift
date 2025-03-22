@@ -40,7 +40,7 @@ struct SelectSortOrderView: View {
             Text("Order By")
             #endif
 
-            Picker(selection: $sortType, label: Text("Order By")) {
+            Picker(selection: $sortOrder, label: Text("Order By")) {
                 ForEach(sortOrders) { order in
                     if horizontalSizeClass == .compact {
                         Image(systemName: order == .ascending ? "arrow.up" : "arrow.down").tag(order)

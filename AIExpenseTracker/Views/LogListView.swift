@@ -19,7 +19,7 @@ struct LogListView: View {
     var body: some View {
         listView
             .sheet(item: $vm.logToEdit, onDismiss: { vm.logToEdit = nil}) { log in
-                Text("TODO: Log Form View")
+                LogFormView(vm: .init(logToEdit: log))
             }
             .overlay {
                 if logs.isEmpty {
@@ -29,6 +29,9 @@ struct LogListView: View {
                         .padding()
                 }
             }
+            .onChange(of: vm.sortType)  { updateFirestoreQuery() }
+            .onChange(of: vm.sortOrder)  { updateFirestoreQuery() }
+            .onChange(of: vm.selectedCategories)  { updateFirestoreQuery() }
     }
     
     var listView: some View {
@@ -69,6 +72,10 @@ struct LogListView: View {
         }
         
         #endif
+    }
+    
+    func updateFirestoreQuery() {
+        $logs.predicates = vm.predicates
     }
     
     private func onDelete(with indexSet: IndexSet) {
